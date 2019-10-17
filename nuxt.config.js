@@ -15,6 +15,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+       src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDZKk5TFXC2KIIYqDK7-Xz1BvmNxtkTf7w&libraries=places'
+      }
     ]
   },
   /*
@@ -50,6 +55,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://127.0.0.1:8000/api'
   },
   /*
   ** vuetify module configuration
@@ -58,10 +64,13 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
+        light:{
+          primary: colors.blue.accent2
+        },
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.green.lighten1,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
