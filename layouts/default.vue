@@ -1,86 +1,73 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app style="z-index:25;" >
-      <v-list>
-         <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg">
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>Jane Smith</v-list-item-title>
-            <v-list-item-subtitle>Logged In</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-list>
-        <v-list-item>
-          <v-switch v-model="$vuetify.theme.dark" color="primary" label="Dark"></v-switch>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-      <v-app-bar dark prominent src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" app>
-      <v-row>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-
-        <v-toolbar-title v-text="title"  />
-
-        <v-spacer />
-        <v-btn icon>
-          <v-icon>mdi-settings</v-icon>
-        </v-btn>
-      </v-row>
-      </v-app-bar>
-     
-    
+    <NavBar />
     <v-content>
-      <v-container fluid>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
 
-    <v-footer app>
+    <v-footer>
       <span>&copy; 2019</span>
     </v-footer>
+    <v-snackbar
+      v-for="(snackbar, index) in snackbars.filter(s=>s.showing)"
+      :key="snackbar.text +
+      Math.random()"
+      :style="`top: ${(index * 60)+ 10}px`"
+      v-model="snackbar.showing"
+      top
+      :color="snackbar.color"
+      :timeout="4000"
+    >
+      <v-icon class="mr-2">{{snackbar.icon}}</v-icon>
+      {{snackbar.text}}
+      <v-btn dark text @click="snackbar.showing= false">Close</v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-
-        drawer: false,
-
-        items: [{
-            icon: 'mdi-apps',
-            title: 'Welcome',
-            to: '/'
-          },
-          {
-            icon: 'mdi-chart-bubble',
-            title: 'Inspire',
-            to: '/inspire'
-          },
-          {
-            icon: 'mdi-chart-bubble',
-            title: 'Service',
-            to: '/service'
-          }
-        ],
-
-        title: "John's Apartment"
+import { mapGetters, mapActions, mapMutations, mapState } from 'vuex'
+import NavBar from '@/components/Navbar.global.vue'
+export default {
+  components: {
+    NavBar
+  },
+  data() {
+    return {}
+  },
+  mounted() {
+    this.initialize()
+    let myNav = document.getElementById('nav')
+    window.onscroll = function() {
+      'use strict'
+      if (document.body.scrollTop >= 200) {
+        myNav.classList.add('nav-transparent')
+      } else {
+        myNav.classList.remove('nav-transparent')
       }
     }
-  }
+  },
 
+  computed: {
+    ...mapGetters({
+      bikes: 'bikes',
+      snackbar: 'snackbar'
+    }),
+    ...mapState({
+      snackbars: 'snackbars'
+    })
+  },
+
+  methods: {
+    ...mapActions(['getVehicles']),
+    async initialize() {
+      await this.getVehicles()
+    }
+  }
+}
 </script>
+<style scoped>
+.nav-transparent {
+  background-color: transparent;
+}
+</style>

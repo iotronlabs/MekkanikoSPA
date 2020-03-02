@@ -1,19 +1,25 @@
 <template>
-  <v-layout>
-    <v-flex class="text-center">
-      <img
-        src="/v.png"
-        alt="Vuetify.js"
-        class="mb-5"
-      >
-      <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;John Johnson</em>
-          </small>
-        </footer>
-      </blockquote>
-    </v-flex>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-card class="pa-4" flat height="300px"></v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      // default to Montreal to keep it simple
+      // change this to whatever makes sense
+    }
+  },
+
+  mounted() {},
+
+  methods: {
+    // receives a place object via the autocomplete component
+  }
+}
+</script>
