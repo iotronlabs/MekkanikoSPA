@@ -33,21 +33,17 @@ export default {
         {
           icon: 'mdi-clipboard-list',
           title: 'Orders',
-          to: 'profile/orders/',
+          to: 'profile/orders',
           click: ''
         },
+
         {
-          icon: 'mdi-bookmark-multiple',
-          title: 'Wishlist',
-          to: 'wishlist',
+          icon: 'mdi-map-marker',
+          title: 'Saved Addresses',
+          to: 'profile/addresses',
           click: ''
         },
-        { icon: 'mdi-map-marker', title: 'Saved Addresses', click: '' },
-        {
-          icon: 'mdi-credit-card-multiple',
-          title: 'Saved Cards',
-          click: 'logoutUser'
-        },
+
         { icon: 'mdi-logout', title: 'Logout', click: 'logoutUser' }
       ]
     }

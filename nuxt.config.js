@@ -162,7 +162,7 @@ export default {
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.indigo.darken3,
-          warning: colors.amber.base,
+          warning: colors.red.accent2,
           error: colors.deepOrange.accent4,
           success: colors.green.darken3
         },
@@ -171,7 +171,7 @@ export default {
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.indigo.darken3,
-          warning: colors.amber.base,
+          warning: colors.red.accent2,
           error: colors.deepOrange.accent4,
           success: colors.green.darken3
         }
