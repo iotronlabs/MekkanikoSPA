@@ -27,20 +27,20 @@ export default {
         {
           icon: 'mdi-home-account',
           title: 'Profile',
-          to: 'profile',
+          to: '/profile',
           click: ''
         },
         {
           icon: 'mdi-clipboard-list',
           title: 'Orders',
-          to: 'profile/orders',
+          to: '/profile/orders',
           click: ''
         },
 
         {
           icon: 'mdi-map-marker',
           title: 'Saved Addresses',
-          to: 'profile/addresses',
+          to: '/profile/addresses',
           click: ''
         },
 
