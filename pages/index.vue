@@ -22,7 +22,7 @@
                 <v-icon class="mr-4">mdi-car-info</v-icon>Select Vehicle Model
               </p>
               <p class="overline mb-12">
-                <v-icon class="mr-4">mdi-account-card-details</v-icon>Book with your details
+                <v-icon class="mr-4">mdi-card-account-details</v-icon>Book with your details
               </p>
               <v-btn color="primary">Book Now</v-btn>
               <v-btn color="secondary">Learn More</v-btn>

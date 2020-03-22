@@ -1,6 +1,6 @@
 <template>
   <v-card outlined>
-    <v-card-title>Location</v-card-title>
+    <v-card-title>Vehicle Details</v-card-title>
 
     <v-card-actions>
       <v-btn color="success" outlined>

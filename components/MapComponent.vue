@@ -79,6 +79,17 @@
         @dragend="gMapFunc($event.latLng)"
       ></gmap-marker>
     </gmap-map>
+    <v-container fluid>
+      <v-row no-gutters>
+        <v-textarea label="Address" auto-grow :value="currentPlace.formatted_address" />
+
+        <v-text-field class="mx-1" label="City/Locality" :value="address.locality"></v-text-field>
+        <v-text-field class="mx-1" label="Pin Code" :value="address.postal_code" />
+      </v-row>
+    </v-container>
+    <v-card-actions>
+      <v-btn color="primary">Submit</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 <script>
@@ -94,12 +105,13 @@ export default {
       markers: [],
       currentMarker: null,
       places: [],
-      currentPlace: null,
+      currentPlace: Object,
       zoomLevel: 12,
       isLoading: false,
       place: null,
       model: null,
-      search: null
+      search: null,
+      address: Object
     }
   },
   computed: {
@@ -158,7 +170,6 @@ export default {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         }
 
-        self.place = place
         self.setPlace(place)
         self.addMarker()
       })
@@ -167,6 +178,12 @@ export default {
     // receives a place object via the autocomplete component
     setPlace(place) {
       this.currentPlace = place
+      this.address = place.address_components.reduce(
+        (seed, { long_name, types }) => (
+          types.forEach(t => (seed[t] = long_name)), seed
+        ),
+        {}
+      )
     },
     addMarker() {
       if (this.currentPlace) {
@@ -178,7 +195,7 @@ export default {
         this.places.push(this.currentPlace)
         this.currentMarker = marker
         this.center = marker
-        this.currentPlace = null
+        //this.currentPlace = null
       }
     },
     geolocate() {
