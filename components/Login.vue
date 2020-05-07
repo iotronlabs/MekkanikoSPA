@@ -12,7 +12,7 @@
                 <v-col class="d-flex justify-center" md="8" offset-md="2">
                   <v-form @submit.prevent="login" id="login-form" method="post">
                     <v-img
-                      src="/logo.png"
+                      src="~assets/logo.png?webp"
                       contain
                       width="200"
                       @click="$vuetify.goTo(0)"

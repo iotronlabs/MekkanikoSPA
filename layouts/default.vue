@@ -9,25 +9,24 @@
       <span>&copy; 2019</span>
     </v-footer>
     <v-snackbar
-      v-for="(snackbar, index) in snackbars.filter(s=>s.showing)"
-      :key="snackbar.text +
-      Math.random()"
-      :style="`top: ${(index * 60)+ 10}px`"
+      v-for="(snackbar, index) in snackbars.filter(s => s.showing)"
+      :key="snackbar.text + Math.random()"
+      :style="`top: ${index * 60 + 10}px`"
       v-model="snackbar.showing"
       top
       :color="snackbar.color"
       :timeout="4000"
     >
-      <v-icon class="mr-2">{{snackbar.icon}}</v-icon>
-      {{snackbar.text}}
-      <v-btn dark text @click="snackbar.showing= false">Close</v-btn>
+      <v-icon class="mr-2">{{ snackbar.icon }}</v-icon>
+      {{ snackbar.text }}
+      <v-btn dark text @click="snackbar.showing = false">Close</v-btn>
     </v-snackbar>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapMutations, mapState } from 'vuex'
-import NavBar from '@/components/Navbar.global.vue'
+import NavBar from '@/components/Navbar.vue'
 export default {
   components: {
     NavBar

@@ -6,10 +6,9 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
+    titleTemplate: '%s - ' + process.env.npm_package_description,
     title: process.env.npm_package_name || '',
-    meta: [
-      {
+    meta: [{
         charset: 'utf-8'
       },
       {
@@ -20,13 +19,6 @@ export default {
         hid: 'description',
         name: 'description',
         content: process.env.npm_package_description || ''
-      }
-    ],
-    link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
       }
     ]
   },
@@ -47,16 +39,19 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxtjs/global-components'],
+  buildModules: ['@nuxtjs/vuetify'],
   webfontloader: {
-    google: {
-      families: ['Montserrat:300,400,500,600,700&display=swap'] //Loads Lato font with weights 400 and 700
+    custom: {
+      families: ['Montserrat', 'Faster One'],
+      urls: [
+        // for each Google Fonts add url + options you want
+        // here add font-display option
+        'https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap',
+        'https://fonts.googleapis.com/css?family=Faster+One&display=swap'
+      ]
     }
   },
-  globalComponents: {
-    /* module options */
-    dir: ['components', 'layouts']
-  },
+
   /*
    ** Nuxt.js modules
    */
@@ -66,27 +61,19 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/auth',
     '@nuxtjs/dotenv',
-    'nuxt-webfontloader',
-    '@nuxtjs/toast'
+    'nuxt-webfontloader'
   ],
 
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
   },
-
-  toast: {
-    position: 'top-center',
-    register: [
-      // Register custom toasts
-      {
-        name: 'my-error',
-        message: 'Oops...Something went wrong',
-        options: {
-          type: 'error'
-        }
-      }
-    ]
-  },
+  /*
+   ** Router configuration
+   */
+  /* optimizedImages: {
+    optimizeImages: false,
+    optimizeImagesInDev: false
+  }, */
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -190,6 +177,7 @@ export default {
      */
     extend(config, ctx) {
       transpile: [/^vue2-google-maps($|\/)/]
+
     }
   }
 }

@@ -4,8 +4,8 @@
       <v-list nav shaped>
         <v-list-item two-line>
           <v-list-item-content>
-            <v-list-item-title>{{ $auth.loggedIn ==0 ? 'Welcome Guest':user.name}}</v-list-item-title>
-            <v-list-item-subtitle>{{ $auth.loggedIn ==0 ? 'Kindly Login':user.email}}</v-list-item-subtitle>
+            <v-list-item-title>{{ $auth.loggedIn == 0 ? 'Welcome Guest' : user.name }}</v-list-item-title>
+            <v-list-item-subtitle>{{ $auth.loggedIn == 0 ? 'Kindly Login' : user.email }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -32,17 +32,25 @@
     </v-navigation-drawer>
     <v-app-bar dense app id="nav" class="nav-transparent">
       <v-app-bar-nav-icon @click.stop="toggle" color="secondary" />
-      <v-img src="/logo.png" contain height="150" width="150" max-width="150" />
-
+      <nuxt-link :to="{ name: 'index' }">
+        <template>
+          <img src="~assets/logo.png" contain height="150" width="150" max-width="150" />
+        </template>
+      </nuxt-link>
       <div class="hidden-sm-and-down">
         <div class="d-flex align-center mx-5">
           <div v-for="(item, i) in items" :key="i">
-            <v-btn text :to="item.to" color="secondary">{{ item.title }}</v-btn>
+            <v-btn
+              text
+              :to="item.to"
+              color="secondary"
+              @click.prevent="item.title == 'Contact US' ? contactWA() : ''"
+            >{{ item.title }}</v-btn>
           </div>
         </div>
       </div>
       <v-spacer />
-      <div v-if="$auth.loggedIn==false">
+      <div v-if="$auth.loggedIn == false">
         <Login />
       </div>
       <!-- Account button -->
@@ -83,8 +91,8 @@ export default {
         },
         {
           icon: 'mdi-comment-question-outline',
-          title: 'About US / FAQ',
-          to: '/inspire'
+          title: 'FAQ',
+          to: '/faq'
         },
         {
           icon: 'mdi-whatsapp',
