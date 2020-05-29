@@ -31,15 +31,24 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['vue-slick-carousel/dist/vue-slick-carousel.css'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/google-maps'],
+  plugins: [
+    '@/plugins/google-maps',
+    {
+      src: './plugins/vue-slick-carousel.js'
+    }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify'],
+  buildModules: [
+    '@nuxtjs/vuetify',
+    '@aceforth/nuxt-optimized-images',
+    '@nuxtjs/gtm'
+  ],
   webfontloader: {
     custom: {
       families: ['Montserrat', 'Faster One'],
@@ -61,19 +70,30 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/auth',
     '@nuxtjs/dotenv',
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/google-analytics'
   ],
 
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
   },
+  googleAnalytics: {
+    id: 'UA-167593799-1'
+  },
+  gtm: {
+    id: 'GTM-W5FKBTX'
+  },
+  sitemap: {
+    hostname: 'https://www.mekkaniko.com'
+  },
   /*
    ** Router configuration
    */
-  /* optimizedImages: {
-    optimizeImages: false,
-    optimizeImagesInDev: false
-  }, */
+  optimizedImages: {
+    optimizeImages: true
+    // optimizeImagesInDev: true
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -145,9 +165,9 @@ export default {
       dark: true,
       themes: {
         light: {
-          primary: colors.indigo.lighten1,
+          primary: colors.indigo.darken1,
           accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          secondary: colors.indigo.accent2,
           info: colors.indigo.darken3,
           warning: colors.red.accent2,
           error: colors.deepOrange.accent4,
@@ -156,11 +176,11 @@ export default {
         dark: {
           primary: colors.indigo.lighten1,
           accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          secondary: colors.indigo.accent1,
           info: colors.indigo.darken3,
           warning: colors.red.accent2,
           error: colors.deepOrange.accent4,
-          success: colors.green.darken3
+          success: colors.green.lighten1
         }
       }
     }
@@ -177,7 +197,6 @@ export default {
      */
     extend(config, ctx) {
       transpile: [/^vue2-google-maps($|\/)/]
-
     }
   }
 }

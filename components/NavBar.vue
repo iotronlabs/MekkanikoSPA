@@ -1,11 +1,19 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="drawer" temporary app>
+    <v-navigation-drawer v-model="drawer" temporary app style="z-index:110">
       <v-list nav shaped>
         <v-list-item two-line>
           <v-list-item-content>
-            <v-list-item-title>{{ $auth.loggedIn == 0 ? 'Welcome Guest' : user.name }}</v-list-item-title>
-            <v-list-item-subtitle>{{ $auth.loggedIn == 0 ? 'Kindly Login' : user.email }}</v-list-item-subtitle>
+            <v-list-item-title>
+              {{
+              $auth.loggedIn == 0 ? 'Welcome Guest' : user.name
+              }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{
+              $auth.loggedIn == 0 ? 'Kindly Login' : user.email
+              }}
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -30,12 +38,10 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar dense app id="nav" class="nav-transparent">
+    <v-app-bar dense app id="nav" class="nav-transparent" flat style="z-index:105">
       <v-app-bar-nav-icon @click.stop="toggle" color="secondary" />
       <nuxt-link :to="{ name: 'index' }">
-        <template>
-          <img src="~assets/logo.png" contain height="150" width="150" max-width="150" />
-        </template>
+        <v-img :src="require('@/assets/icon.png')" contain height="35" width="35" />
       </nuxt-link>
       <div class="hidden-sm-and-down">
         <div class="d-flex align-center mx-5">
@@ -81,7 +87,7 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Home',
           to: '/'
         },
         {

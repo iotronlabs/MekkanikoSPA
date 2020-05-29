@@ -4,6 +4,14 @@
 $body-font-family:'Montserrat',
 sans-serif;
 
-.nav-transparent {
-  background-color: transparent;
+$material-light: ('background':#e0e0e0);
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .5s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
 }

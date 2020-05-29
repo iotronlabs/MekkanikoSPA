@@ -32,8 +32,14 @@ export default {
         },
         {
           icon: 'mdi-clipboard-list',
-          title: 'Orders',
+          title: 'Your Bookings',
           to: '/profile/orders',
+          click: ''
+        },
+        {
+          icon: 'mdi-car-sports',
+          title: 'Saved Vehicles',
+          to: '/profile/vehicles',
           click: ''
         },
 

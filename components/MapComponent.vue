@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mb-6">
+  <v-card>
     <v-row no-gutters>
       <v-toolbar>
         <!--    <gmap-autocomplete
@@ -79,23 +79,17 @@
         @dragend="gMapFunc($event.latLng)"
       ></gmap-marker>
     </gmap-map>
-    <v-container fluid>
+    <!-- <v-container fluid>
       <v-row no-gutters>
-        <v-textarea label="Address" auto-grow :value="currentPlace.formatted_address" />
-
-        <v-text-field class="mx-1" label="City/Locality" :value="address.locality"></v-text-field>
-        <v-text-field class="mx-1" label="Pin Code" :value="address.postal_code" />
       </v-row>
-    </v-container>
-    <v-card-actions>
-      <v-btn color="primary">Submit</v-btn>
-    </v-card-actions>
+    </v-container>-->
   </v-card>
 </template>
 <script>
 import { gmapApi } from 'vue2-google-maps'
 export default {
   name: 'GoogleMap',
+
   data() {
     return {
       stepper: 1,
@@ -110,8 +104,7 @@ export default {
       isLoading: false,
       place: null,
       model: null,
-      search: null,
-      address: Object
+      search: null
     }
   },
   computed: {
@@ -121,7 +114,7 @@ export default {
     this.google = gmapApi
   },
   mounted() {
-    this.geolocate()
+    //this.geolocate()
   },
 
   watch: {
@@ -140,7 +133,7 @@ export default {
           componentRestrictions: { country: 'IN' },
 
           location: new google.maps.LatLng(22.5726, 88.3639),
-          radius: 10000
+          radius: 5000
         },
         (predictions, status) => {
           if (status != google.maps.places.PlacesServiceStatus.OK) {
@@ -178,12 +171,7 @@ export default {
     // receives a place object via the autocomplete component
     setPlace(place) {
       this.currentPlace = place
-      this.address = place.address_components.reduce(
-        (seed, { long_name, types }) => (
-          types.forEach(t => (seed[t] = long_name)), seed
-        ),
-        {}
-      )
+      this.$emit('update:address', place)
     },
     addMarker() {
       if (this.currentPlace) {
@@ -195,6 +183,10 @@ export default {
         this.places.push(this.currentPlace)
         this.currentMarker = marker
         this.center = marker
+        this.zoomLevel = 16
+        this.$emit('update:location', {
+          location: marker
+        })
         //this.currentPlace = null
       }
     },
@@ -209,12 +201,20 @@ export default {
         this.center = marker
         this.zoomLevel = 16
         this.model = null
+        this.$emit('update:location', {
+          location: marker
+        })
       })
     },
     gMapFunc(evnt) {
       let marker = { lat: evnt.lat(), lng: evnt.lng() }
       this.currentMarker = marker
       this.center = marker
+      this.model = null
+      this.zoomLevel = 16
+      this.$emit('update:location', {
+        location: marker
+      })
     }
   }
 }

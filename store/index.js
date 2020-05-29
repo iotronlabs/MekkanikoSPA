@@ -2,13 +2,16 @@ export const strict = false
 
 export const state = () => ({
   bikes: [],
-
+  cars: [],
   snackbars: []
 })
 
 export const getters = {
   bikes(state) {
     return state.bikes
+  },
+  cars(state) {
+    return state.cars
   },
   snackbar(state) {
     return state.snackbar
@@ -18,6 +21,9 @@ export const getters = {
 export const mutations = {
   SET_BIKES(state, bikes) {
     state.bikes = bikes
+  },
+  SET_CARS(state, cars) {
+    state.cars = cars
   },
   SET_SNACKBAR(state, snackbar) {
     snackbar.showing = true
@@ -29,12 +35,19 @@ export const mutations = {
 }
 
 export const actions = {
-  async getVehicles({ commit }) {
-    let response = await this.$axios.$get('/bikes')
+  async getVehicles({
+    commit
+  }) {
+    let responsebikes = await this.$axios.$get('/bikes')
+    let responsecars = await this.$axios.$get('/cars')
 
-    commit('SET_BIKES', response.data)
+    commit('SET_BIKES', responsebikes.data)
+    commit('SET_CARS', responsecars.data)
   },
-  setSnackbar({ commit, snackbar }) {
+  setSnackbar({
+    commit,
+    snackbar
+  }) {
     snackbar.showing = true
     commit('SET_SNACKBAR', snackbar)
     console.log(snackbar)
