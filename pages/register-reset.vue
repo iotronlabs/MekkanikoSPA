@@ -129,7 +129,7 @@
 export default {
   data() {
     return {
-      active: 2,
+      active: 1,
       show: false,
       isLoading: false,
       email: null,

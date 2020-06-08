@@ -1,13 +1,8 @@
 <template>
   <v-tabs v-model="type" fixed-tabs icons-and-text>
-    <v-tab
-      class="subtitle-2"
-      v-for="i in vehicleType"
-      :key="i.type"
-      @change="selectedVehicle=null, selectedType=null"
-    >
-      {{i.label}}
-      <v-icon>{{i.icon}}</v-icon>
+    <v-tab class="subtitle-2" v-for="i in vehicleType" :key="i.type" @change="reset">
+      {{ i.label }}
+      <v-icon>{{ i.icon }}</v-icon>
     </v-tab>
     <v-tabs-items v-model="type">
       <v-tab-item v-for="i in vehicleType" :key="i.type">
@@ -18,7 +13,7 @@
             @change="updateVehicle(i.type)"
             return-object
             :items="bikes"
-            v-if="i.type=='bike'"
+            v-if="i.type == 'bike'"
             outlined
             hide-details="auto"
             dense
@@ -30,7 +25,7 @@
             @change="updateVehicle(i.type)"
             return-object
             :items="cars"
-            v-if="i.type=='car'"
+            v-if="i.type == 'car'"
             outlined
             hide-details="auto"
             dense
@@ -74,7 +69,7 @@ export default {
     updateVehicle(type) {
       this.selectedType = type
       this.$emit('update:vehicle', {
-        model: this.selectedVehicle,
+        model: this.selectedVehicle.text,
         type: this.selectedType
       })
       this.error = null
@@ -86,6 +81,11 @@ export default {
         this.error = 'Vehicle not selected!'
         return false
       }
+    },
+    reset() {
+      this.error = null
+      this.selectedVehicle = null
+      this.selectedType = null
     }
   }
 }

@@ -2,67 +2,84 @@ export const strict = false
 
 export const state = () => ({
   bikeService: [{
-      title: 'Breakdown Assistance',
+      value: 1,
+      text: 'Breakdown Assistance',
       features: ['Engine Start Failure',
         'Ignition Failure'
-      ]
+
+      ],
+      price: 99
 
     },
     {
-      title: 'Maintainance',
+      value: 2,
+      text: 'Maintainance',
       features: ['Engine and Performance',
         'Battery and Electrical',
         'Engine oil change',
         'Brake Tuning',
         'Chain and Sprocket Tuning',
         'Vehicle Wash'
-      ]
+      ],
+      price: 479
     },
     {
-      title: 'Repair Service',
+      value: 3,
+      text: 'Repair Service',
       features: ['Engine system',
         'Transmission and Gearbox',
         'Electrical and Battery',
         'Suspension and Alignment',
         'Oil filter change',
         'Breaking system'
-      ]
+      ],
+      price: 79
     },
     {
-      title: 'Wash and Polish',
-      features: ['Doorstep Wash', 'Waterjet Dirt Removal', 'Body Polish', 'Scratch Prevention']
+      value: 4,
+      text: 'Wash and Polish',
+      features: ['Doorstep Wash', 'Waterjet Dirt Removal', 'Body Polish', 'Scratch Prevention'],
+      price: 179
     }
   ],
   carService: [{
-      title: 'Breakdown Assistance',
+      value: 1,
+      text: 'Breakdown Assistance',
       features: ['Engine Start Failure',
         'Ignition Failure'
-      ]
+      ],
+      price: 199
 
     },
     {
-      title: 'Maintainance',
+      value: 2,
+      text: 'Maintainance',
       features: ['Engine and Performance',
         'Battery and Electrical',
         'Engine oil change',
         'Brake Tuning',
         'Chain and Sprocket Tuning',
         'Vehicle Wash'
-      ]
+      ],
+      price: 759
     },
     {
-      title: 'Repair Service',
+      value: 3,
+      text: 'Repair Service',
       features: ['Engine system',
         'Transmission and Gearbox',
         'Electrical and Battery',
         'Suspension and Alignment',
         'Oil filter change',
         'Breaking system'
-      ]
+      ],
+      price: 159
     },
     {
-      title: 'Wash and Polish',
-      features: ['Doorstep Wash', 'Waterjet Dirt Removal', 'Body Polish', 'Scratch Prevention']
+      value: 4,
+      text: 'Wash and Polish',
+      features: ['Doorstep Wash', 'Waterjet Dirt Removal', 'Body Polish', 'Scratch Prevention'],
+      price: 499
     }
   ],
 

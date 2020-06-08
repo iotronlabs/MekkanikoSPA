@@ -97,7 +97,7 @@ export default {
       // change this to whatever makes sense
       center: { lat: 22.5726, lng: 88.3639 },
       markers: [],
-      currentMarker: null,
+      currentMarker: { lat: 22.5726, lng: 88.3639 },
       places: [],
       currentPlace: Object,
       zoomLevel: 12,
@@ -162,33 +162,41 @@ export default {
       geocoder.getDetails({ placeId: placeId }, function(place, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         }
-
+        let marker = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        }
         self.setPlace(place)
-        self.addMarker()
+        self.addMarker(marker)
+        self.$emit('update:location', {
+          location: marker
+        })
       })
     },
 
     // receives a place object via the autocomplete component
     setPlace(place) {
       this.currentPlace = place
-      this.$emit('update:address', place)
+      let address = place.address_components.reduce(
+        (seed, { long_name, types }) => (
+          types.forEach(t => (seed[t] = long_name)), seed
+        )
+      )
+      console.log(address)
+      let addressData = {}
+      addressData.details = place.formatted_address
+      addressData.pin = address.postal_code
+      addressData.city = address.locality || address.long_name
+      this.$emit('update:address', addressData)
     },
-    addMarker() {
-      if (this.currentPlace) {
-        let marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        }
-        this.markers.push({ position: marker })
-        this.places.push(this.currentPlace)
-        this.currentMarker = marker
-        this.center = marker
-        this.zoomLevel = 16
-        this.$emit('update:location', {
-          location: marker
-        })
-        //this.currentPlace = null
-      }
+    addMarker(marker) {
+      this.markers.push({ position: marker })
+
+      this.currentMarker = marker
+      this.center = marker
+      this.zoomLevel = 16
+      this.model = null
+      //this.currentPlace = null
     },
     geolocate() {
       navigator.geolocation.getCurrentPosition(position => {
@@ -196,11 +204,7 @@ export default {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        this.markers.push({ position: marker })
-        this.currentMarker = marker
-        this.center = marker
-        this.zoomLevel = 16
-        this.model = null
+        this.addMarker(marker)
         this.$emit('update:location', {
           location: marker
         })
@@ -208,10 +212,7 @@ export default {
     },
     gMapFunc(evnt) {
       let marker = { lat: evnt.lat(), lng: evnt.lng() }
-      this.currentMarker = marker
-      this.center = marker
-      this.model = null
-      this.zoomLevel = 16
+      this.addMarker(marker)
       this.$emit('update:location', {
         location: marker
       })

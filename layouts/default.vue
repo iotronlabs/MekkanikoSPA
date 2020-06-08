@@ -5,7 +5,7 @@
       <nuxt />
     </v-content>
 
-    <v-footer>
+    <!-- <v-footer>
       <v-row>
         <v-col>
           <v-img :src="require('@/assets/logo.png')" max-width="200px" />
@@ -38,7 +38,7 @@
           <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
       </v-row>
-    </v-footer>
+    </v-footer>-->
     <v-snackbar
       v-for="(snackbar, index) in snackbars.filter(s => s.showing)"
       :key="snackbar.text + Math.random()"

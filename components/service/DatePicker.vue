@@ -1,33 +1,32 @@
 <template>
   <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
-    <template v-slot:activator="{ on }">
-      <v-text-field
-        v-model="date"
-        label="Schedule Pick-up"
-        prepend-icon="mdi-calendar-blank"
-        readonly
-        v-on="on"
-      ></v-text-field>
-    </template>
     <v-date-picker v-model="date" scrollable color="primary" :min="minDate" :max="maxDate">
       <v-spacer></v-spacer>
-      <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
 
-      <v-btn text color="primary" @click="selectedDate(date)">OK</v-btn>
+      <v-btn text color="primary" @click="selectedDate(date)">update</v-btn>
     </v-date-picker>
   </v-dialog>
 </template>
 <script>
 export default {
-  data: () => ({
-    date: new Date().toISOString().substr(0, 10),
-    minDate: null,
-    maxDate: null,
-    modal: false
-  }),
+  props: {
+    modal: {
+      type: Boolean
+    }
+  },
+  data() {
+    return {
+      date: new Date().toISOString().substr(0, 10),
+      minDate: null,
+      maxDate: null
+      //  dateModal: null
+    }
+  },
+
   mounted() {
     this.getCurrentDate()
   },
+
   methods: {
     getCurrentDate() {
       let today = new Date()
@@ -47,6 +46,7 @@ export default {
       this.minDate = yyyy + '-' + mm + '-' + dd
       this.date = yyyy + '-' + mm + '-' + dd
       this.maxDate = maxyy + '-' + maxmm + '-' + maxdd
+      this.$emit('update:date', this.date)
     },
     selectedDate(date) {
       this.$refs.dialog.save(date)

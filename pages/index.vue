@@ -179,10 +179,12 @@
                 >
                   <v-card-subtitle class="mb-0 pb-0 subtitle-2 text-uppercase text-center">
                     starts from
-                    <p class="my-0 display-2 secondary--text">₹499</p>
+                    <p class="my-0 display-2 success--text">₹{{service.price}}/-</p>
                   </v-card-subtitle>
 
-                  <v-card-title class="subtitle-1">{{ service.title }}</v-card-title>
+                  <v-card-title
+                    class="subtitle-1 secondary--text text-uppercase"
+                  >{{ service.title }}</v-card-title>
 
                   <v-card-subtitle class="pt-0 px-1 subtitle-2">
                     <ul>
@@ -220,10 +222,12 @@
                 >
                   <v-card-subtitle class="mb-0 pb-0 subtitle-2 text-uppercase text-center">
                     starts from
-                    <p class="my-0 display-2 secondary--text">₹499</p>
+                    <p class="my-0 display-2 success--text">₹{{service.price}}/-</p>
                   </v-card-subtitle>
 
-                  <v-card-title class="subtitle-1">{{ service.title }}</v-card-title>
+                  <v-card-title
+                    class="subtitle-1 secondary--text text-uppercase"
+                  >{{ service.title }}</v-card-title>
 
                   <v-card-subtitle class="pt-0 px-1 subtitle-2">
                     <ul>

@@ -39,6 +39,10 @@ export default {
     '@/plugins/google-maps',
     {
       src: './plugins/vue-slick-carousel.js'
+    },
+    {
+      src: '~/plugins/vee-validate.js',
+
     }
   ],
   /*
@@ -179,7 +183,7 @@ export default {
           secondary: colors.indigo.accent1,
           info: colors.indigo.darken3,
           warning: colors.red.accent2,
-          error: colors.deepOrange.accent4,
+          error: colors.deepOrange.accent3,
           success: colors.green.lighten1
         }
       }
@@ -192,6 +196,9 @@ export default {
    ** Build configuration
    */
   build: {
+    transpile: [
+      "vee-validate/dist/rules"
+    ],
     /*
      ** You can extend webpack config here
      */
