@@ -240,7 +240,8 @@ import DatePicker from '@/components/service/DatePicker'
 import { ValidationObserver } from 'vee-validate'
 
 export default {
-  // middleware: 'auth-user',
+  middleware: 'auth-user',
+  layout: 'service',
   data() {
     return {
       stepper: 1,

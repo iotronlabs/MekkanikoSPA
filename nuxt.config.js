@@ -55,12 +55,12 @@ export default {
   ],
   webfontloader: {
     custom: {
-      families: ['Montserrat', 'Faster One'],
+      families: ['Montserrat'],
       urls: [
         // for each Google Fonts add url + options you want
         // here add font-display option
         'https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap',
-        'https://fonts.googleapis.com/css?family=Faster+One&display=swap'
+
       ]
     }
   },
@@ -95,7 +95,7 @@ export default {
    ** Router configuration
    */
   optimizedImages: {
-    optimizeImages: true
+    optimizeImages: true,
     // optimizeImagesInDev: true
   },
   /*
@@ -166,12 +166,12 @@ export default {
     },
     treeShake: true,
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         light: {
           primary: colors.indigo.darken1,
           accent: colors.grey.darken3,
-          secondary: colors.indigo.accent2,
+          secondary: colors.indigo.accent3,
           info: colors.indigo.darken3,
           warning: colors.red.accent2,
           error: colors.deepOrange.accent4,

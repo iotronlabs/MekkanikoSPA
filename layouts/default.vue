@@ -5,40 +5,64 @@
       <nuxt />
     </v-content>
 
-    <!-- <v-footer>
-      <v-row>
-        <v-col>
+    <v-footer>
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="3" sm="3">
           <v-img :src="require('@/assets/logo.png')" max-width="200px" />
-          <p class="subtitle-2"></p>
-          <v-btn v-for="(item, i) in items" :key="i" :href="item.href" icon text target="_blank">
+          <v-divider class="ma-2" />
+          <p class="subtitle-2">
+            <v-icon>mdi-phone</v-icon>&nbsp;- &nbsp;8250529183
+            <br />
+            <v-icon>mdi-email</v-icon>&nbsp;- &nbsp;contactus@mekkaniko.com
+          </p>
+          <v-divider class="ma-2" />
+          <v-btn
+            class="ma-2"
+            v-for="(item, i) in items"
+            :key="i"
+            :href="item.href"
+            icon
+            text
+            target="_blank"
+          >
             <v-icon v-text="item.icon" />
           </v-btn>
-          <v-btn class large outlined>Join Our network</v-btn>
         </v-col>
-        <v-col>
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMekkaniko-Online-Car-Bike-Service-Repair-1799150870167855%2F&tabs=timeline&width=500&height=290&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-            width="100%"
-            height="280px"
-            style="border:none;overflow:hidden;"
-            scrolling="no"
-            frameborder="1"
-            allowtransparency="true"
-            allow="encrypted-media"
-          ></iframe>
+        <v-col cols="12" md="3" class="text-center">
+          <v-btn large outlined class="mx-auto">Join Our network</v-btn>
         </v-col>
-        <v-col>
-          <nuxt-link to="/sitemap.xml">Site Map</nuxt-link>
+        <v-col
+          cols="12"
+          md="3"
+          sm="3"
+          class="d-flex flex-row justify-space-between"
+          style="width:100%"
+        >
+          <v-list width="50%" dense class="text-uppercase overline">
+            <v-list-item>About us</v-list-item>
+            <v-list-item>faq</v-list-item>
+            <v-list-item>site map</v-list-item>
+            <v-list-item>Refund policy</v-list-item>
+            <v-list-item>cancellation policy</v-list-item>
+          </v-list>
+          <v-list width="50%" dense class="text-uppercase overline">
+            <v-list-item to="service">breakdown</v-list-item>
+            <v-list-item to="service">maintainance</v-list-item>
+            <v-list-item to="service">repair</v-list-item>
+            <v-list-item to="service">wash & polish</v-list-item>
+            <v-list-item>list of vehicles</v-list-item>
+          </v-list>
         </v-col>
       </v-row>
       <v-row style="width:100%" class="mx-1">
-        <span class="my-auto">&copy; 2020</span>
+        <span class="my-auto overline">&copy; 2020 developed by iotron</span>
+
         <v-spacer />
         <v-btn class small icon title="Go to top" @click="$vuetify.goTo(0)">
           <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
       </v-row>
-    </v-footer>-->
+    </v-footer>
     <v-snackbar
       v-for="(snackbar, index) in snackbars.filter(s => s.showing)"
       :key="snackbar.text + Math.random()"
@@ -67,20 +91,16 @@ export default {
     return {
       items: [
         {
-          href: '#!',
-          icon: 'mdi-twitter'
+          href: 'https://wa.me/+918250529183',
+          icon: 'mdi-whatsapp'
         },
         {
-          href: '#!',
+          href: 'https://www.instagram.com/mekkanikoofficial/',
           icon: 'mdi-instagram'
         },
         {
-          href: '#!',
+          href: 'https://www.facebook.com/mekkaniko.autoservice/',
           icon: 'mdi-facebook'
-        },
-        {
-          href: '#!',
-          icon: 'mdi-google'
         }
       ]
     }

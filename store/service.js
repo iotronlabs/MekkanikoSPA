@@ -3,7 +3,7 @@ export const strict = false
 export const state = () => ({
   bikeService: [{
       value: 1,
-      text: 'Breakdown Assistance',
+      text: 'Breakdown Assist',
       features: ['Engine Start Failure',
         'Ignition Failure'
 
@@ -44,7 +44,7 @@ export const state = () => ({
   ],
   carService: [{
       value: 1,
-      text: 'Breakdown Assistance',
+      text: 'Breakdown Assist',
       features: ['Engine Start Failure',
         'Ignition Failure'
       ],
